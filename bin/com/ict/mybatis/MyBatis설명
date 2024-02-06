@@ -1,0 +1,76 @@
+	< MyBatis 설명 >
+	
+	1. 	MyBatis 다운 받아서 util 폴더에 넣고 압축해제
+
+	2. 	mybatis-3.X.XX.jar 파일과 mybatis-3.X.XX.pdf 파일이 필요하므로 util 에 복사하자
+			사용자 - 자바 - 마이바티스 - ojdbc 드라이버 - 오라클
+		1) 프로젝트에서 마우스 우클릭 Buid Path - Configure 선택 후 jar 넣기
+		2) 프로젝트 선택 후 메뉴탭 Window - Preference - Maven - 4번째 javadoc 체크 
+				
+	3. 	MyBatis 는 자바진영에서 사용하는 SQL 프레임워크(=구조화된 틀)
+		(즉, 자바를 사용하는 사용자가 편하게 하기위해서 제공하는 SQL 프레임워크)
+		
+	4.	만드는 순서
+	
+		1) VO 를 먼저 만들자. 
+			**원하는 테이블과 컬럼명이 일치해야 된다.
+			(일부를 빼도 상관없고, 다른 테이블의 컬럼명을 넣어도 상관없다.)
+		
+		2) config.xml 만들자.	
+			(참고, xml : 확장 마크업 언어, 사용자가 태그를 만들어서 사용할 수 있다.)
+			다운받은 pdf 를 보면 만드는 방법이 나온다.(3 page)
+			**xml 파일의 첫 줄은 무조건 <?xml version="1.0" encoding="UTF-8"?>	
+				(참고, encoding : 문자를 바이트코드로 변환하는 것)
+				(참고, UTF-8 : 전세계언어를 표현 가능, 유니코드)
+			
+		 	=> 오라클 접속 정보 입력 => mapper.xml 위치 지정
+		 
+		 3) mapper.xml 만들자 
+		 	다운받은 pdf 를 보면 만드는 방법이 나온다.(4 page)
+		 	
+		 	<mapper namespace="메퍼이름">
+				<select id="id이름" resultType="결과타입(VO 또는 int)" [parameterType = "외부에서 들어오는 정보타입"]>
+					실제 사용할 SQL 쿼리
+				</select>
+			</mapper>
+		 	
+		 		3-1) mapper 가 여러개 일때 구분하기 위함
+		 		
+		 		3-2) 자바에서 mapper 에 접근할때 namespace 가 지정한 **메퍼이름.id이름** 으로 접근한다.
+		 		
+		 	  **3-3) mapper 는 SQL 을 사용하여 DB 에 보내고 결과를 받아서 
+		 			mapper 를 호출한 곳으로 결과를 되돌려 보내는 역할을 한다.(메서드처럼)
+		 		
+		 		3-4) 태그 자체에 select, insert, update. delete 태그가 있다.
+		 		
+		 		3-5) select 태그는 반드시 resultType 이 있어야하고, parameterType 은 생략 가능하다.
+		 			**주의사항) resultType 에서 여러줄이 나와도 List<VO> 가 아니다. 그냥 VO 이다.
+		 		
+		 		3-6) insert, update, delete 태그는 resultType 이 없고, parameterType 만 있다.
+		 			**주의사항) parameterType 이 2개 이상인 경우 반드시 VO 를 사용
+		 					단, 1개 일때는 VO 또는 String , int 등 사용가능
+		 		
+		 		3-7) 동적 바인딩 변수 ? 물음표 대신에 #{컬럼명} 사용
+		 		
+		4) DBService.java 만들기
+			: config 파일을 읽어 자바에서 MyBatis 를 사용할 수 있도록 도와주는 클래스
+			다운받은 pdf 를 보면 만드는 방법이 나온다.(2 page)  
+		
+			자바에서는 SqlSession 클래스를 사용한다.
+			SqlSession 클래스를 사용하기 위해서 SqlSessionFactory 가 필요하다.
+			SqlSessionFactory 를 리턴해주는 클래스이다.
+		
+		5) DAO.java 만들기
+			: DB 처리하는 클래스 
+		
+			DBService.getFactory() 로 SqlSessionFactory 를 호출하고
+			SqlSessionFactory 를 이용하여 자바에서 사용할 수 있는 SqlSession 을 만들어서 사용
+		
+			DB 처리하는 메서드들 만들기(즉, mapper.xml 을 호출하는 메서드)
+		
+		6) main 메서드 만들기
+			DAO.메서드() 호출
+				
+		
+		 		
+		
