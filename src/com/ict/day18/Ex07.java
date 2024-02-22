@@ -18,40 +18,51 @@ public class Ex07 {
 		stream.map(i -> i.toUpperCase()).forEach(i -> System.out.print(i + " "));
 		System.out.println();	//	toUpperCase() 대문자로 바꿔라
 		
-		List<Ex08> list = Arrays.asList(
-				new Ex08("pack", 20),
-				new Ex08("kyung", 35),
-				new Ex08("seok", 67),
-				new Ex08("test man", 10),
-				new Ex08("test woman", 45)				
+		List<Ex07_VO> list = Arrays.asList(
+				new Ex07_VO("pack", 20),
+				new Ex07_VO("kyung", 35),
+				new Ex07_VO("seok", 67),
+				new Ex07_VO("test man", 10),
+				new Ex07_VO("test woman", 45)				
 				);
 		
 		//	이름만 추출하자
-		Stream<Ex08> stream2 = list.stream();
+		Stream<Ex07_VO> stream2 = list.stream();
 		stream2.map(i -> i.getName()).forEach(i -> System.out.print(i + " "));
 		System.out.println();
 		
+		//	다시 사용하려면 스트림 다시 생성
+		Stream<Ex07_VO> stream3 = list.stream();
 		//	map() 중간처리하고 Stream 으로 받아서 사용할 수 있다.
-		Stream<Ex08> stream3 = list.stream();
 		Stream<String> nameList = stream3.map(i -> i.getName());
+		//	중간처리하고 받은 스트림으로 최종처리
 		nameList.forEach(i -> System.out.println(i + " "));
 		System.out.println();
 		
 		
 		//	flatMap() : 입력한 원소를 가장 작은 단위의 단일 스트림으로 반환한다.
 		
+		//	리스트 만들기
 		List<String> list2 = Arrays.asList("사과3팩","멜론2팩","딸기3팩");
+		//	리스트로 스트림 생성
 		Stream<String> stream4 = list2.stream();
-		List<String> list3 = stream4.flatMap(i -> {			//	flatMap (중간처리)
-			String s = i.substring(0, 2);	//	index 0 부터 2까지(포함x)
-			int n = Integer.parseInt(i.substring(2, 3));	//	index 2 부터 
+		//	flatMap (중간처리)
+		List<String> list3 = stream4.flatMap(i -> {
+			//	index 0 부터 2까지(2포함x)
+			String s = i.substring(0, 2);	
+			//	index 2 부터 3까지(3포함x)
+			//	String 을 int 로 바꾸기
+			int n = Integer.parseInt(i.substring(2, 3));
+			//	배열의 크기를 팩수만큼으로 배열을 만들고
 			String[] arr = new String[n];
+			//	배열 안에 뽑아냈던 과일명을 채움
 			Arrays.fill(arr, s);
+			//	배열을 스트림으로 만들어서 반환
 			return Stream.of(arr);
 		}).collect(Collectors.toList());	//	새로운 리스트에 저장(최종처리)
 		System.out.println(list3);
 		System.out.println();
-		
+
 		
 		//	< 2차원배열의 경우 map 과 flatMap 의 차이 >
 		String[][] arr2 = new String[][] {

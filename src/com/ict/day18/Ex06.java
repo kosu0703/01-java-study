@@ -21,8 +21,13 @@ public class Ex06 {
 		
 		//	filter(조건) : 조건에 안 맞으면 제외
 		System.out.println("짝수만 출력");
-		IntStream intStream03 = IntStream.range(0, 10);			//	range : 끝 포함 안함
+		IntStream intStream03 = IntStream.range(0, 10);		//	range : **끝 포함 안함
 		intStream03.filter(i -> i%2==0).forEach(i -> System.out.print(i + " "));
+		System.out.println();
+		
+		System.out.println("홀수만 출력");
+		intStream03 = IntStream.range(0, 10);	//	range : 끝 포함 안함
+		intStream03.filter(i -> i%2==1).forEach(i -> System.out.print(i + " "));
 		System.out.println();
 		
 		//	limit(갯수) : 갯수만큼 잘라내기
@@ -39,9 +44,6 @@ public class Ex06 {
 		IntStream intStream06 = IntStream.rangeClosed(0, 10);	//	rangeClosed : 끝 포함
 		intStream06.map(i -> i*10).forEach(i -> System.out.print(i + " "));
 		System.out.println();
-		
-		
-		
 		
 	}
 }

@@ -34,8 +34,8 @@ public class Ex03 {
 		//System.out.println(integerStream.sum());
 		//System.out.println(integerStream.average());		
 		
-		//	**Stream<T> 에는 sum(), average() 없음
-		//	IntStream , DoubleStream 에서는 가능
+		//	Stream<T> 에는 sum(), average() 없음
+		//	**IntStream , DoubleStream 에서는 가능
 		
 		//	IntStream : count() O , sum() O , average() O
 		//	기본자료형 배열을 스트림으로 
@@ -51,7 +51,7 @@ public class Ex03 {
 		System.out.println();
 		System.out.println(intStream02.count());
 		System.out.println(intStream03.sum());
-		System.out.println(intStream04.average());
+		System.out.println(intStream04.average().getAsDouble());
 		
 		
 		

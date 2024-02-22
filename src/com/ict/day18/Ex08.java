@@ -1,38 +1,23 @@
 package com.ict.day18;
 
-//	VO(Value Object), DTO(Data Transfer Object)
-//	값이 있는 객체이다.
-//	아래처럼 하는 것이 기본이다.
-public class Ex08 {
-	private String name;
-	private int age;
-	
-	public Ex08() {
-		
-	}
-	
-	public Ex08(String name, int age) {
-		this.name = name;
-		this.age = age;
-	}
+import java.util.function.BinaryOperator;
 
-	public String getName() {
-		return name;
-	}
+//	reduce(초기값, 수행할 기능)
+//	reduce(T identity, BinaryOperator<T> accumulator)
 
-	public void setName(String name) {
-		this.name = name;
-	}
+public class Ex08 implements BinaryOperator<String>{	//	상속받아야 reduce 사용 가능 
 
-	public int getAge() {
-		return age;
+	@Override
+	public String apply(String s1, String s2) {
+		//	글자수가 더 긴 문자열 반환
+		if (s1.length() >= s2.length()) {		
+			return s1;
+		}else {
+			return s2;
+		}
 	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-	
-	
-	
 	
 }
+
+
+

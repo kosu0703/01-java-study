@@ -7,6 +7,7 @@ public class Ex04 {
 		
 		//	정수 배열을 스트림으로 활용하기
 		int[] arr = {1,2,3,4,5};
+		//	int 배열은 자동으로 IntStream 으로 만들어짐
 		int sum = Arrays.stream(arr).sum();				//	sum() 의 반환형은 int
 		int count = (int) Arrays.stream(arr).count();	//	count() 의 반환형이 long 이기 때문에
 		
