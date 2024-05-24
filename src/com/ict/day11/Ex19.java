@@ -72,6 +72,7 @@ public class Ex19 {
 		System.out.println(now2.getTime()+",,,,,,,,,,,,");
 		
 		
+		
 		//	두 날짜 차이 구하기
 		long diff = now.getTimeInMillis() - now2.getTimeInMillis();
 		System.out.println(diff);
